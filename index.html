@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dreamix Site</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eceff2;--card:#fff;--ink:#14202b;--mut:#64717e;--line:#dde2e8;--acc:#2457d6;--accx:#fff;--ok:#1f9d63;--wip:#d98a00;--pl:#8a95a1;--bp:#12306b;--bpl:#a9c1f5;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f151b;--card:#18212a;--ink:#e9eef3;--mut:#93a0ad;--line:#2a3643;--acc:#6c93ff;--accx:#0f151b;--bp:#0b1c40}}
+:root[data-theme="dark"]{--bg:#0f151b;--card:#18212a;--ink:#e9eef3;--mut:#93a0ad;--line:#2a3643;--acc:#6c93ff;--accx:#0f151b;--bp:#0b1c40}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Manrope,system-ui,sans-serif}
+button,input,select{font:inherit;color:inherit}
+.top{display:flex;align-items:center;gap:12px;padding:12px 20px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:5}
+.logo{font-weight:800;font-size:18px;letter-spacing:-.02em}.logo b{color:var(--acc)}
+.sp{flex:1}.seg{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:none;padding:6px 11px;cursor:pointer;font-weight:600;color:var(--mut)}
+.seg button.on{background:var(--acc);color:var(--accx)}
+.btn{border:0;background:var(--acc);color:var(--accx);padding:9px 16px;border-radius:8px;font-weight:700;cursor:pointer}
+.btn.g{background:none;border:1px solid var(--line);color:var(--ink)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding:20px}
+.login{max-width:380px;margin:9vh auto;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px}
+.login h1{margin:0 0 4px;font-size:24px;letter-spacing:-.02em}
+label{display:block;font-size:13px;font-weight:600;color:var(--mut);margin:14px 0 5px}
+input[type=text],input[type=password],select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.err{color:#d23b3b;font-size:13px;margin-top:8px;min-height:18px}.hint{color:var(--mut);font-size:12.5px;margin-top:14px}
+.layout{display:grid;grid-template-columns:230px 1fr;gap:20px}
+.side{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;align-self:start}
+.side h3{margin:4px 8px 8px;font-size:13px;color:var(--mut)}
+.obj{display:block;width:100%;text-align:left;border:0;background:none;padding:9px 10px;border-radius:8px;cursor:pointer;font-weight:600}
+.obj small{display:block;color:var(--mut);font-weight:400}.obj.on{background:var(--bg);box-shadow:inset 3px 0 var(--acc)}
+.new{border-top:1px solid var(--line);margin-top:10px;padding-top:6px}.new input{margin-bottom:6px;padding:8px 10px}
+.head{display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.head h2{margin:0;font-size:28px;letter-spacing:-.03em;line-height:1.1}.head p{margin:2px 0 0;color:var(--mut)}
+.grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:16px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:16px}
+.card h3{margin:0 0 12px;font-size:16px}
+.plan{background:var(--bp);border-radius:12px;padding:14px;min-height:420px;display:flex;flex-direction:column}
+.plan h3{color:#fff;margin:0 0 10px;font-size:16px;display:flex;align-items:center;gap:10px}.plan h3 span{flex:1}
+.plan svg,.plan img{width:100%;height:auto;border-radius:6px;display:block}.plan iframe{width:100%;height:460px;border:0;border-radius:6px;background:#fff}
+.up{display:inline-block;background:#ffffff1f;color:#fff;border-radius:8px;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer}.up input{display:none}
+.bar{height:10px;background:var(--bg);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;background:var(--acc);transition:width .6s}
+.pct{font-size:34px;font-weight:800;letter-spacing:-.03em}
+.mem{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line)}.mem:first-of-type{border-top:0}
+.av{width:38px;height:38px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-weight:800;color:var(--acc);flex:none}
+.mem div.t{flex:1;min-width:0}.mem b{display:block}.mem small{color:var(--mut)}
+.st{font-size:12.5px;font-weight:700;padding:3px 10px;border-radius:20px;border:1px solid currentColor;white-space:nowrap}
+.st.done{color:var(--ok)}.st.progress{color:var(--wip)}.st.planned{color:var(--pl)}
+select.st{width:auto;padding:4px 8px;background:var(--card)}
+.ph{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ph figure{margin:0}.ph .im{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font-size:30px;background-size:cover;background-position:center}
+.ph figcaption{font-size:12px;color:var(--mut);margin-top:4px;line-height:1.3}
+.chat{display:flex;flex-direction:column;gap:8px;max-height:280px;overflow:auto;margin-bottom:10px}
+.m{max-width:85%;padding:8px 12px;border-radius:12px;background:var(--bg)}.m small{display:block;color:var(--mut);font-size:11.5px}
+.m.me{align-self:flex-end;background:var(--acc);color:var(--accx)}.m.me small{color:inherit;opacity:.75}
+.send{display:flex;gap:8px}.send input{flex:1}
+@media(max-width:900px){.layout,.grid{grid-template-columns:1fr}.plan{min-height:0}.wrap{padding:14px}.top{padding:10px 14px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+.x{border:0;background:none;color:var(--mut);cursor:pointer;font-size:18px;padding:0 4px}
+.row{display:flex;gap:8px;margin-top:10px}.row input{flex:1;min-width:0;padding:8px 10px}
+.empty{color:#a9c1f5;padding:50px 0;text-align:center}.ph a{text-decoration:none;color:inherit}
+.dng{color:#d23b3b;border-color:#d23b3b}
+</style>
+</head>
+<body>
+<div class="top"><div class="logo">Dreamix<b>Site</b></div><div class="sp"></div>
+<div class="seg" id="lang"><button data-l="lv">LV</button><button data-l="ru">RU</button></div>
+<button class="btn g" id="out" hidden></button></div>
+<div class="wrap" id="app"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+const {createClient}=supabase,$=s=>document.querySelector(s);
+const T={lv:{login:'Pieslēgšanās',sub:'Būvobjekta pārskats',user:'Lietotājvārds vai e-pasts',pass:'Parole',enter:'Ieiet',bad:'Nepareizs lietotājvārds vai parole',out:'Iziet',plan:'Stāvu plāns',team:'Brigāde',prog:'Kopējais progress',photos:'Jaunākās fotogrāfijas',chat:'Komentāri',send:'Sūtīt',write:'Rakstiet komentāru…',done:'Pabeigts',progress:'Procesā',planned:'Plānots',objs:'Objekti',nw:'Jauns objekts',name:'Nosaukums',addr:'Adrese',create:'Izveidot objektu',upPlan:'Augšupielādēt plānu',upPh:'Pievienot foto',mgr:'Menedžeris',client:'Klients',empty:'Vēl nav komentāru.',cred:'Klienta pieteikšanās',member:'Vārds',role:'Darbi',add:'Pievienot',noPlan:'Plāns vēl nav augšupielādēts',noPh:'Fotogrāfiju vēl nav',delQ:'Dzēst objektu un visus tā datus?',fill:'Aizpildiet nosaukumu, lietotājvārdu un paroli (vismaz 6 simboli).',cap:'Foto paraksts (nav obligāts)',noSites:'Nav pieejamu objektu',made:'Objekts izveidots. Nosūtiet klientam:',del:'Dzēst objektu'},
+ru:{login:'Вход',sub:'Обзор строительного объекта',user:'Логин или e-mail',pass:'Пароль',enter:'Войти',bad:'Неверный логин или пароль',out:'Выйти',plan:'План этажа',team:'Бригада',prog:'Общий прогресс',photos:'Последние фотографии',chat:'Комментарии',send:'Отправить',write:'Напишите комментарий…',done:'Готово',progress:'В работе',planned:'Запланировано',objs:'Объекты',nw:'Новый объект',name:'Название',addr:'Адрес',create:'Создать объект',upPlan:'Загрузить план',upPh:'Добавить фото',mgr:'Менеджер',client:'Клиент',empty:'Комментариев пока нет.',cred:'Вход для клиента',member:'Имя',role:'Работы',add:'Добавить',noPlan:'План ещё не загружен',noPh:'Фотографий пока нет',delQ:'Удалить объект и все его данные?',fill:'Заполните название, логин и пароль (минимум 6 символов).',cap:'Подпись к фото (необязательно)',noSites:'Нет доступных объектов',made:'Объект создан. Отправьте клиенту:',del:'Удалить объект'}};
+const S={lang:localStorage.lang||'lv',user:null,admin:false,sites:[],cur:null,d:null,ch:null,logins:[]};
+const t=k=>T[S.lang][k],esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let sb;const B=()=>sb.storage.from('site-files');
+const fmt=d=>new Date(d).toLocaleString(S.lang=='ru'?'ru-RU':'lv-LV',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+const pc=()=>{const x=S.d.team;return x.length?Math.round(x.reduce((a,m)=>a+(m.status=='done'?1:m.status=='progress'?.5:0),0)/x.length*100):0};
+const shrink=(f,max)=>new Promise(r=>{const i=new Image();i.onload=()=>{const k=Math.min(1,max/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);c.toBlob(r,'image/jpeg',.85)};i.src=URL.createObjectURL(f)});
+async function boot(){const {data:{user}}=await sb.auth.getUser();S.user=user;S.admin=!!(await sb.from('admins').select('user_id').maybeSingle()).data;S.sites=(await sb.from('sites').select('*').order('created_at')).data||[];S.cur=S.sites[0]||null;await load()}
+async function load(){
+ if(S.ch){sb.removeChannel(S.ch);S.ch=null}
+ if(!S.cur){S.d=null;return draw()}
+ const id=S.cur.id,[tm,ph,ms,mb]=await Promise.all([sb.from('team').select('*').eq('site_id',id).order('created_at'),sb.from('photos').select('*').eq('site_id',id).order('created_at',{ascending:false}).limit(24),sb.from('messages').select('*').eq('site_id',id).order('created_at'),sb.from('site_members').select('login').eq('site_id',id)]);
+ const paths=(ph.data||[]).map(p=>p.path);if(S.cur.plan_path)paths.push(S.cur.plan_path);
+ const U={};if(paths.length)((await B().createSignedUrls(paths,3600)).data||[]).forEach(x=>U[x.path]=x.signedUrl);
+ S.logins=(mb.data||[]).map(x=>x.login);
+ S.d={team:tm.data||[],photos:(ph.data||[]).map(p=>({...p,url:U[p.path]})),msgs:ms.data||[],plan:S.cur.plan_path?U[S.cur.plan_path]:null};
+ S.ch=sb.channel('m'+id).on('postgres_changes',{event:'INSERT',schema:'public',table:'messages',filter:'site_id=eq.'+id},p=>push(p.new)).subscribe();
+ draw()}
+function draw(){
+ document.documentElement.lang=S.lang;document.querySelectorAll('#lang button').forEach(b=>b.classList.toggle('on',b.dataset.l==S.lang));
+ const o=$('#out');o.hidden=!S.user;o.textContent=t('out');const a=$('#app');
+ if(!S.user){a.innerHTML=`<form class="login" onsubmit="return login(event)"><h1>${t('login')}</h1><div style="color:var(--mut)">${t('sub')}</div><label for="lu">${t('user')}</label><input type="text" id="lu" autocomplete="username" autocapitalize="none"><label for="lp">${t('pass')}</label><input type="password" id="lp" autocomplete="current-password"><div class="err" id="err"></div><button class="btn" style="width:100%;margin-top:6px">${t('enter')}</button></form>`;return}
+ const side=(S.admin||S.sites.length>1)?`<aside class="side"><h3>${t('objs')}</h3>${S.sites.map(x=>`<button class="obj ${S.cur&&x.id==S.cur.id?'on':''}" onclick="pick('${x.id}')">${esc(x.name)}<small>${esc(x.address)}</small></button>`).join('')}${S.admin?`<div class="new"><h3>${t('nw')}</h3><input type="text" id="nn" placeholder="${t('name')}"><input type="text" id="na" placeholder="${t('addr')}"><input type="text" id="nl" placeholder="${t('user')}" autocapitalize="none"><input type="text" id="np" placeholder="${t('pass')}"><button class="btn" style="width:100%" onclick="addSite()">${t('create')}</button></div>`:''}</aside>`:'';
+ a.innerHTML=`<div class="${side?'layout':''}">${side}<main>${S.d?dash():`<p>${t('noSites')}</p>`}</main></div>`;renderChat()}
+function dash(){const s=S.cur,d=S.d,ad=S.admin;
+ const pl=d.plan?(/\.pdf$/i.test(s.plan_path)?`<iframe src="${d.plan}" title="plan"></iframe>`:`<a href="${d.plan}" target="_blank"><img src="${d.plan}" alt="plan"></a>`):`<div class="empty">${t('noPlan')}</div>`;
+ return `<div class="head"><div><h2>${esc(s.name)}</h2><p>${esc(s.address)}</p></div></div>${ad?`<div class="card" style="font-size:13.5px;color:var(--mut)">${t('cred')}: <b style="color:var(--ink)">${S.logins.map(esc).join(', ')}</b> <button class="btn g dng" style="float:right;padding:3px 10px;font-size:12.5px" onclick="delSite()">${t('del')}</button></div>`:''}
+<div class="grid"><div class="plan"><h3><span>${t('plan')}</span>${ad?`<label class="up">${t('upPlan')}<input type="file" accept="image/*,application/pdf" onchange="upPlan(this)"></label>`:''}</h3>${pl}</div><div>
+<div class="card"><h3>${t('prog')}</h3><div class="pct">${pc()}%</div><div class="bar"><i style="width:${pc()}%"></i></div></div>
+<div class="card"><h3>${t('team')}</h3>${d.team.map(m=>`<div class="mem"><div class="av">${esc(m.name[0])}</div><div class="t"><b>${esc(m.name)}</b><small>${esc(m.role)}</small></div>${ad?`<select class="st ${m.status}" onchange="setSt('${m.id}',this.value)">${['planned','progress','done'].map(v=>`<option value="${v}" ${v==m.status?'selected':''}>${t(v)}</option>`).join('')}</select><button class="x" onclick="delM('${m.id}')" aria-label="x">✕</button>`:`<span class="st ${m.status}">${t(m.status)}</span>`}</div>`).join('')}${ad?`<div class="row"><input type="text" id="tn" placeholder="${t('member')}"><input type="text" id="tr" placeholder="${t('role')}"><button class="btn" onclick="addM()">${t('add')}</button></div>`:''}</div>
+<div class="card"><h3>${t('photos')}</h3>${ad?`<div class="row" style="margin:0 0 12px"><input type="text" id="cap" placeholder="${t('cap')}"><label class="btn" style="cursor:pointer">${t('upPh')}<input type="file" accept="image/*" hidden onchange="upPh(this)"></label></div>`:''}${d.photos.length?`<div class="ph">${d.photos.map(p=>`<figure><a href="${p.url}" target="_blank"><div class="im" style="background-image:url('${p.url}')"></div></a><figcaption>${esc(p.caption)}<br>${fmt(p.created_at)}</figcaption></figure>`).join('')}</div>`:`<p style="color:var(--mut);margin:0">${t('noPh')}</p>`}</div>
+<div class="card"><h3>${t('chat')}</h3><div class="chat" id="chat"></div><div class="send"><input type="text" id="msg" placeholder="${t('write')}" onkeydown="if(event.key=='Enter')send()"><button class="btn" onclick="send()">${t('send')}</button></div></div></div></div>`}
+function renderChat(){const c=$('#chat');if(!c||!S.d)return;c.innerHTML=S.d.msgs.length?S.d.msgs.map(m=>`<div class="m ${(m.from_role=='manager')==S.admin?'me':''}"><small>${m.from_role=='manager'?t('mgr'):t('client')} · ${fmt(m.created_at)}</small>${esc(m.body)}</div>`).join(''):`<p style="color:var(--mut);margin:0">${t('empty')}</p>`;c.scrollTop=c.scrollHeight}
+function push(m){if(S.d.msgs.some(x=>x.id==m.id))return;S.d.msgs.push(m);renderChat()}
+async function login(e){e.preventDefault();let u=$('#lu').value.trim().toLowerCase();if(!u.includes('@'))u+='@'+CFG.domain;const {error}=await sb.auth.signInWithPassword({email:u,password:$('#lp').value});if(error){$('#err').textContent=t('bad');return false}await boot();return false}
+async function pick(id){S.cur=S.sites.find(x=>x.id==id);await load()}
+async function send(){const el=$('#msg'),v=el.value.trim();if(!v)return;el.value='';const {data,error}=await sb.from('messages').insert({site_id:S.cur.id,body:v,from_role:S.admin?'manager':'client'}).select().single();if(error)return alert(error.message);push(data)}
+async function addSite(){const n=$('#nn').value.trim(),a=$('#na').value.trim(),l=$('#nl').value.trim().toLowerCase().replace(/[^a-z0-9._-]/g,''),p=$('#np').value;
+ if(!n||!l||p.length<6)return alert(t('fill'));
+ const tmp=createClient(CFG.url,CFG.key,{auth:{persistSession:false,autoRefreshToken:false,storageKey:'tmp'}});
+ const {data,error}=await tmp.auth.signUp({email:l+'@'+CFG.domain,password:p});if(error||!data.user)return alert(error?error.message:'Error');
+ const r=await sb.from('sites').insert({name:n,address:a}).select().single();if(r.error)return alert(r.error.message);
+ await sb.from('site_members').insert({site_id:r.data.id,user_id:data.user.id,login:l});
+ S.sites.push(r.data);S.cur=r.data;await load();alert(t('made')+'\n\n'+t('user')+': '+l+'\n'+t('pass')+': '+p)}
+async function delSite(){if(!confirm(t('delQ')))return;await sb.from('sites').delete().eq('id',S.cur.id);S.sites=S.sites.filter(x=>x.id!=S.cur.id);S.cur=S.sites[0]||null;await load()}
+async function setSt(id,v){await sb.from('team').update({status:v}).eq('id',id);await load()}
+async function delM(id){await sb.from('team').delete().eq('id',id);await load()}
+async function addM(){const n=$('#tn').value.trim();if(!n)return;await sb.from('team').insert({site_id:S.cur.id,name:n,role:$('#tr').value.trim()});await load()}
+async function upPlan(i){const f=i.files[0];if(!f)return;const pdf=f.type=='application/pdf',path=`${S.cur.id}/plan-${Date.now()}.${pdf?'pdf':'jpg'}`;
+ const {error}=await B().upload(path,pdf?f:await shrink(f,2400),{contentType:pdf?'application/pdf':'image/jpeg'});if(error)return alert(error.message);
+ await sb.from('sites').update({plan_path:path}).eq('id',S.cur.id);S.cur.plan_path=path;await load()}
+async function upPh(i){const f=i.files[0];if(!f)return;const path=`${S.cur.id}/photos/${Date.now()}.jpg`;
+ const {error}=await B().upload(path,await shrink(f,1600),{contentType:'image/jpeg'});if(error)return alert(error.message);
+ await sb.from('photos').insert({site_id:S.cur.id,path,caption:($('#cap').value||'').trim()});await load()}
+document.querySelectorAll('#lang button').forEach(b=>b.onclick=()=>{S.lang=localStorage.lang=b.dataset.l;draw()});
+$('#out').onclick=async()=>{await sb.auth.signOut();Object.assign(S,{user:null,admin:false,sites:[],cur:null,d:null});draw()};
+(async()=>{if(!window.CFG||CFG.url.includes('YOUR-PROJECT')){$('#app').innerHTML='<div class="login"><h1>config.js</h1><p>Add your Supabase URL and anon key to config.js.</p></div>';return}
+ sb=createClient(CFG.url,CFG.key);const {data}=await sb.auth.getSession();if(data.session)await boot();else draw()})();
+</script>
+</body>
+</html>
